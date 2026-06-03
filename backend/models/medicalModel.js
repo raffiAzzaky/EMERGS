@@ -17,8 +17,46 @@ export const createMedicalTable = async () => {
       )
     `;
     await pool.query(query);
+
+    const allergiesQuery = `
+      CREATE TABLE IF NOT EXISTS allergies (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        allergy_name VARCHAR(255) NOT NULL,
+        severity VARCHAR(50) DEFAULT 'Mild',
+        notes TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `;
+    await pool.query(allergiesQuery);
+
+    const medicationsQuery = `
+      CREATE TABLE IF NOT EXISTS medications (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        medicine_name VARCHAR(255) NOT NULL,
+        dosage VARCHAR(100),
+        frequency VARCHAR(100),
+        notes TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `;
+    await pool.query(medicationsQuery);
+
+    const notesQuery = `
+      CREATE TABLE IF NOT EXISTS medical_notes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        note TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `;
+    await pool.query(notesQuery);
   } catch (error) {
-    console.error('Error creating medical_records table:', error);
+    console.error('Error creating medical tables:', error);
   }
 };
 
@@ -83,4 +121,60 @@ export const getAllMedicalRecords = async () => {
     console.error('Error getting all medical records:', error);
     throw error;
   }
+};
+
+// --- Sub-tables helper methods ---
+
+export const getAllergies = async (userId) => {
+  const [rows] = await pool.query('SELECT * FROM allergies WHERE user_id = ? ORDER BY created_at DESC', [userId]);
+  return rows;
+};
+
+export const addAllergy = async (userId, allergyName, severity = 'Mild', notes = '') => {
+  const [result] = await pool.query(
+    'INSERT INTO allergies (user_id, allergy_name, severity, notes) VALUES (?, ?, ?, ?)',
+    [userId, allergyName, severity, notes]
+  );
+  return result.insertId;
+};
+
+export const deleteAllergy = async (id, userId) => {
+  const [result] = await pool.query('DELETE FROM allergies WHERE id = ? AND user_id = ?', [id, userId]);
+  return result.affectedRows > 0;
+};
+
+export const getMedications = async (userId) => {
+  const [rows] = await pool.query('SELECT * FROM medications WHERE user_id = ? ORDER BY created_at DESC', [userId]);
+  return rows;
+};
+
+export const addMedication = async (userId, medicineName, dosage = '', frequency = '', notes = '') => {
+  const [result] = await pool.query(
+    'INSERT INTO medications (user_id, medicine_name, dosage, frequency, notes) VALUES (?, ?, ?, ?, ?)',
+    [userId, medicineName, dosage, frequency, notes]
+  );
+  return result.insertId;
+};
+
+export const deleteMedication = async (id, userId) => {
+  const [result] = await pool.query('DELETE FROM medications WHERE id = ? AND user_id = ?', [id, userId]);
+  return result.affectedRows > 0;
+};
+
+export const getMedicalNotes = async (userId) => {
+  const [rows] = await pool.query('SELECT * FROM medical_notes WHERE user_id = ? ORDER BY created_at DESC', [userId]);
+  return rows;
+};
+
+export const addMedicalNote = async (userId, note) => {
+  const [result] = await pool.query(
+    'INSERT INTO medical_notes (user_id, note) VALUES (?, ?)',
+    [userId, note]
+  );
+  return result.insertId;
+};
+
+export const deleteMedicalNote = async (id, userId) => {
+  const [result] = await pool.query('DELETE FROM medical_notes WHERE id = ? AND user_id = ?', [id, userId]);
+  return result.affectedRows > 0;
 };

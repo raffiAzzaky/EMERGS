@@ -1,5 +1,9 @@
 // backend/controllers/userController.js
 import * as userModel from '../models/userModel.js';
+import bcrypt from 'bcryptjs';
+import * as contactModel from '../models/contactModel.js';
+import * as medicalModel from '../models/medicalModel.js';
+import pool from '../config/database.js';
 
 export const getProfile = async (req, res) => {
   try {
@@ -112,5 +116,136 @@ export const updateSettings = async (req, res) => {
   } catch (error) {
     console.error('Error updating settings:', error);
     res.status(500).json({ success: false, message: 'Failed to update settings' });
+  }
+};
+
+export const getOnboardingStatus = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await userModel.getUser(userId);
+    const contacts = await contactModel.getContactsByUser(userId);
+    const medical = await medicalModel.getMedicalRecord(userId);
+
+    const hasName = !!user?.name;
+    const hasTtl = !!user?.ttl;
+    const hasAlamat = !!user?.alamat;
+    const hasPhone = !!user?.phone;
+    const hasContact = contacts && contacts.length > 0;
+    const hasBloodType = !!medical?.blood_type;
+    const hasAllergies = !!medical?.allergies;
+    const hasDiseaseHistory = !!medical?.disease_history;
+
+    const completed = hasName && hasTtl && hasAlamat && hasPhone && hasContact && hasBloodType && hasAllergies && hasDiseaseHistory;
+
+    res.status(200).json({
+      success: true,
+      completed: !!completed,
+      details: {
+        hasName,
+        hasTtl,
+        hasAlamat,
+        hasPhone,
+        hasContact,
+        hasBloodType,
+        hasAllergies,
+        hasDiseaseHistory,
+      }
+    });
+  } catch (error) {
+    console.error('Error checking onboarding status:', error);
+    res.status(500).json({ success: false, message: 'Failed to check onboarding status' });
+  }
+};
+
+export const saveOnboarding = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { 
+      name, 
+      ttl, 
+      alamat, 
+      phone, 
+      blood_type, 
+      allergies, 
+      disease_history, 
+      contact_name, 
+      contact_phone, 
+      contact_relationship 
+    } = req.body;
+
+    if (!name || !ttl || !alamat || !phone || !blood_type || !allergies || !disease_history || !contact_name || !contact_phone) {
+      return res.status(400).json({ success: false, message: 'Semua data wajib harus diisi' });
+    }
+
+    // 1. Update user profile
+    await userModel.updateUser(userId, {
+      name,
+      ttl,
+      alamat,
+      phone
+    });
+
+    // 2. Save emergency contact
+    const contacts = await contactModel.getContactsByUser(userId);
+    if (contacts.length === 0) {
+      await contactModel.createContact(userId, contact_name, contact_phone, contact_relationship || 'Keluarga', 'Darurat');
+    } else {
+      await contactModel.updateContact(contacts[0].id, userId, {
+        name: contact_name,
+        phone: contact_phone,
+        relationship: contact_relationship || 'Keluarga',
+        priority: 'Darurat'
+      });
+    }
+
+    // 3. Save medical record
+    const medical = await medicalModel.getMedicalRecord(userId);
+    if (!medical) {
+      await medicalModel.createMedicalRecord(userId, blood_type, allergies, disease_history);
+    } else {
+      await medicalModel.updateMedicalRecord(userId, {
+        blood_type,
+        allergies,
+        disease_history
+      });
+    }
+
+    // 4. Also synchronize the initial allergy in the allergies table
+    await pool.query('DELETE FROM allergies WHERE user_id = ?', [userId]);
+    const allergyItems = allergies.split(',').map(item => item.trim()).filter(item => item.length > 0);
+    for (const item of allergyItems) {
+      await pool.query('INSERT INTO allergies (user_id, allergy_name) VALUES (?, ?)', [userId, item]);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Onboarding data saved successfully'
+    });
+  } catch (error) {
+    console.error('Error saving onboarding:', error);
+    res.status(500).json({ success: false, message: 'Failed to save onboarding data' });
+  }
+};
+
+export const changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({ success: false, message: 'Password lama dan password baru wajib diisi' });
+    }
+
+    const user = await userModel.getUser(req.user.id);
+    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ success: false, message: 'Password lama salah' });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await userModel.updateUser(req.user.id, { password: hashedPassword });
+
+    res.status(200).json({ success: true, message: 'Password berhasil diubah' });
+  } catch (error) {
+    console.error('Error changing password:', error);
+    res.status(500).json({ success: false, message: 'Gagal mengubah password' });
   }
 };

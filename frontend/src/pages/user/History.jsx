@@ -196,12 +196,6 @@ export default function History() {
           onFilter={setFilter}
           resultCount={filtered.length}
           totalCount={historyData.length}
-          actions={
-            <button className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accent hover:opacity-90 text-text border border-accent/25 text-xs font-semibold transition-all shadow-sm cursor-pointer">
-              <Download className="w-3.5 h-3.5 text-text" />
-              Export
-            </button>
-          }
         />
       </div>
 

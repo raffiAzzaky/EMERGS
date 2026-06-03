@@ -16,6 +16,7 @@ import MedicalHistory from "../pages/user/MedicalHistory";
 import EmergencyContacts from "../pages/user/EmergencyContacts";
 import Notifications from "../pages/user/Notifications";
 import UserSettings from "../pages/user/Settings";
+import Onboarding from "../pages/user/Onboarding";
 
 // Admin pages
 import AdminDashboard from "../pages/admin/Dashboard";
@@ -28,6 +29,8 @@ import AdminSettings from "../pages/admin/Settings";
 // Route guards
 import ProtectedRoute from "./ProtectedRoute";
 import RoleRoute from "./RoleRoute";
+import OnboardingGuard from "./OnboardingGuard";
+import DeviceRestrictionGuard from "./DeviceRestrictionGuard";
 
 export default function AppRoutes() {
   return (
@@ -45,7 +48,11 @@ export default function AppRoutes() {
         element={
           <ProtectedRoute>
             <RoleRoute allowedRole="user">
-              <UserLayout />
+              <DeviceRestrictionGuard>
+                <OnboardingGuard>
+                  <UserLayout />
+                </OnboardingGuard>
+              </DeviceRestrictionGuard>
             </RoleRoute>
           </ProtectedRoute>
         }
@@ -58,6 +65,20 @@ export default function AppRoutes() {
         <Route path="notifications" element={<Notifications />} />
         <Route path="settings"     element={<UserSettings />} />
       </Route>
+
+      {/* ── Onboarding (protected, but bypasses onboarding check itself) ── */}
+      <Route
+        path="/user/onboarding"
+        element={
+          <ProtectedRoute>
+            <RoleRoute allowedRole="user">
+              <DeviceRestrictionGuard>
+                <Onboarding />
+              </DeviceRestrictionGuard>
+            </RoleRoute>
+          </ProtectedRoute>
+        }
+      />
 
       {/* ── Admin (protected) ────────────────────────── */}
       <Route

@@ -9,6 +9,8 @@ import { createUserTable } from './models/userModel.js';
 import { createContactTable } from './models/contactModel.js';
 import { createMedicalTable } from './models/medicalModel.js';
 import { createAdminSettingsTable } from './models/adminSettingsModel.js';
+import { createPanicLogsTable } from './models/panicLogSchema.js';
+import { createNotificationsTable } from './models/notificationSchema.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -39,6 +41,8 @@ const initializeTables = async () => {
     await createContactTable();
     await createMedicalTable();
     await createAdminSettingsTable();
+    await createPanicLogsTable();
+    await createNotificationsTable();
     console.log('Database tables initialized');
   } catch (error) {
     console.error('Error initializing tables:', error.message);

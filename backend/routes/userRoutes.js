@@ -1,5 +1,13 @@
 import express from 'express';
-import { getProfile, updateProfile, getSettings, updateSettings } from '../controllers/userController.js';
+import { 
+  getProfile, 
+  updateProfile, 
+  getSettings, 
+  updateSettings,
+  getOnboardingStatus,
+  saveOnboarding,
+  changePassword
+} from '../controllers/userController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 import { body } from 'express-validator';
 import { handleValidationErrors } from '../middleware/validationMiddleware.js';
@@ -21,5 +29,9 @@ router.put(
 
 router.get('/settings', authMiddleware, getSettings);
 router.put('/settings', authMiddleware, updateSettings);
+
+router.get('/onboarding-status', authMiddleware, getOnboardingStatus);
+router.post('/onboarding', authMiddleware, saveOnboarding);
+router.put('/change-password', authMiddleware, changePassword);
 
 export default router;
