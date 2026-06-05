@@ -79,7 +79,7 @@ export default function Modal({
       <div
         className={`
           relative w-full ${sz}
-          bg-white border border-accent/25 rounded-2xl
+          bg-card border border-accent/25 rounded-2xl
           shadow-2xl shadow-black/15
           flex flex-col
           max-h-[90vh]

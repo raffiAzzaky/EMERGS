@@ -17,9 +17,9 @@ export default function Sidebar({ isOpen, onClose, user }) {
   return (
     <aside
       className={`
-        fixed top-0 left-0 h-full z-30 w-64 bg-sidebar border-r border-accent/20
+        fixed top-0 left-0 h-screen z-30 w-64 bg-sidebar border-r border-accent/20
         flex flex-col transition-transform duration-300 ease-in-out
-        lg:static lg:translate-x-0 lg:z-auto
+        lg:sticky lg:top-0 lg:translate-x-0 lg:z-auto
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
       `}
     >
@@ -42,7 +42,7 @@ export default function Sidebar({ isOpen, onClose, user }) {
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto">
+      <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto flex flex-col justify-center">
         {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}

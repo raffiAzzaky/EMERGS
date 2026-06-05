@@ -39,7 +39,7 @@ export default function Profile() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 lg:px-8 py-8 lg:py-10">
-      <div className="bg-white rounded-3xl shadow-2xl shadow-black/20 overflow-hidden">
+      <div className="bg-card rounded-3xl shadow-2xl shadow-black/20 overflow-hidden">
 
         {/* ── Banner ── */}
         <div className="h-28 bg-gradient-to-r from-sidebar to-primary relative overflow-hidden">

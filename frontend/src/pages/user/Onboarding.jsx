@@ -104,7 +104,7 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-background py-10 px-4 flex flex-col justify-center items-center">
-      <div className="w-full max-w-xl bg-white border border-accent/20 rounded-3xl p-6 lg:p-8 shadow-2xl relative">
+      <div className="w-full max-w-xl bg-card border border-accent/20 rounded-3xl p-6 lg:p-8 shadow-2xl relative">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-3 shadow-md border border-primary/20">
@@ -132,7 +132,7 @@ export default function Onboarding() {
                       ? "bg-primary border-primary text-text shadow-md scale-110" 
                       : active 
                         ? "bg-primary/40 border-primary text-text/90" 
-                        : "bg-white border-accent/30 text-text/40"
+                        : "bg-card border-accent/30 text-text/40"
                   }`}
                 >
                   <Icon className="w-4 h-4" />

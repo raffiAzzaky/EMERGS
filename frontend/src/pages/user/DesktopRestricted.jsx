@@ -24,7 +24,7 @@ export default function DesktopRestricted() {
       {/* Background radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background -z-10 pointer-events-none" />
 
-      <div className="w-full max-w-lg bg-white border border-accent/25 rounded-3xl p-8 lg:p-12 shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
+      <div className="w-full max-w-lg bg-card border border-accent/25 rounded-3xl p-8 lg:p-12 shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
         {/* Decorative background pulse ring */}
         <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/5 blur-xl pointer-events-none" />
         
@@ -43,7 +43,7 @@ export default function DesktopRestricted() {
 
         {/* Message */}
         <p className="text-text/75 text-sm lg:text-base mb-8 leading-relaxed">
-          EMERGs User App hanya dapat diakses melalui perangkat <span className="font-bold text-text">Mobile</span> atau <span className="font-bold text-text">Tablet</span>. Silakan gunakan perangkat portabel Anda untuk mengakses dashboard kesehatan darurat.
+          EMERGs User App hanya dapat diakses melalui perangkat <span className="font-bold text-text">Mobile</span> or <span className="font-bold text-text">Tablet</span>. Silakan gunakan perangkat portabel Anda untuk mengakses dashboard kesehatan darurat.
         </p>
 
         {/* Info Box */}
@@ -58,7 +58,7 @@ export default function DesktopRestricted() {
         <div className="w-full flex flex-col sm:flex-row gap-3">
           <button
             onClick={handleBack}
-            className="flex-1 py-3 px-4 rounded-xl border border-accent/30 bg-white hover:bg-accent/5 text-text text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+            className="flex-1 py-3 px-4 rounded-xl border border-accent/30 bg-card hover:bg-accent/5 text-text text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Kembali

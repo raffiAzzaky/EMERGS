@@ -211,7 +211,7 @@ export default function MedicalHistory() {
         subtitle="Data medis Anda tersimpan di backend"
       />
 
-      <div className="rounded-3xl border border-accent/10 bg-white p-6 shadow-sm mb-8">
+      <div className="rounded-3xl border border-accent/10 bg-card p-6 shadow-sm mb-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between mb-5">
           <div>
             <h2 className="text-lg font-bold text-text">Rekam Medis</h2>
@@ -252,13 +252,13 @@ export default function MedicalHistory() {
                   value={form.blood_type}
                   onChange={setField("blood_type")}
                   placeholder="A+, B-, O+, ..."
-                  className="w-full rounded-2xl border border-accent/20 bg-white px-4 py-3 text-sm text-text outline-none focus:border-primary"
+                  className="w-full rounded-2xl border border-accent/20 bg-card px-4 py-3 text-sm text-text outline-none focus:border-primary"
                 />
               </div>
             </div>
 
             <div className="space-y-4 lg:col-span-2">
-              <div className="rounded-3xl border border-accent/10 bg-white p-4">
+              <div className="rounded-3xl border border-accent/10 bg-card p-4">
                 <label className="block text-text/70 text-xs font-bold uppercase tracking-widest mb-2">
                   Alergi (Pisahkan dengan koma)
                 </label>
@@ -267,10 +267,10 @@ export default function MedicalHistory() {
                   value={form.allergies}
                   onChange={setField("allergies")}
                   placeholder="Contoh: Penisilin, kacang"
-                  className="w-full rounded-2xl border border-accent/20 bg-white px-4 py-3 text-sm text-text outline-none focus:border-primary"
+                  className="w-full rounded-2xl border border-accent/20 bg-card px-4 py-3 text-sm text-text outline-none focus:border-primary"
                 />
               </div>
-              <div className="rounded-3xl border border-accent/10 bg-white p-4">
+              <div className="rounded-3xl border border-accent/10 bg-card p-4">
                 <label className="block text-text/70 text-xs font-bold uppercase tracking-widest mb-2">
                   Riwayat Penyakit (Pisahkan dengan koma)
                 </label>
@@ -279,7 +279,7 @@ export default function MedicalHistory() {
                   onChange={setField("disease_history")}
                   rows={4}
                   placeholder="Contoh: Asma, hipertensi, diabetes"
-                  className="w-full rounded-3xl border border-accent/20 bg-white px-4 py-3 text-sm text-text outline-none focus:border-primary resize-none"
+                  className="w-full rounded-3xl border border-accent/20 bg-card px-4 py-3 text-sm text-text outline-none focus:border-primary resize-none"
                 />
               </div>
             </div>

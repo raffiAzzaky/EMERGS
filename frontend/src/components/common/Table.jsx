@@ -41,7 +41,7 @@ export default function Table({
   const gridCols = columns.map((c) => c.width ?? "1fr").join(" ");
 
   return (
-    <div className="bg-white border border-accent/20 rounded-2xl overflow-hidden shadow-sm">
+    <div className="bg-card border border-accent/20 rounded-2xl overflow-hidden shadow-sm">
 
       {/* ── Header row ── */}
       <div

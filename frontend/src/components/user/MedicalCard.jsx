@@ -46,7 +46,7 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
   return (
     <div
       className={`
-        bg-white border rounded-2xl overflow-hidden shadow-sm transition-all duration-200
+        bg-card border rounded-2xl overflow-hidden shadow-sm transition-all duration-200
         ${isOpen ? "border-primary" : "border-accent/20 hover:border-accent/45"}
       `}
     >
@@ -122,7 +122,7 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
 
           {/* Manage Form Inside Accordion */}
           {isManageable && onAddEntry && (
-            <div className="px-5 py-4 border-t border-accent/15 bg-white">
+            <div className="px-5 py-4 border-t border-accent/15 bg-card">
               <form onSubmit={handleSubmit} className="space-y-3">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-text/60">Tambah Entri Baru</p>
                 {id === "alergi" && (
@@ -132,13 +132,13 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
                       placeholder="Nama Alergen (cth: Kacang)"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                       required
                     />
                     <select
                       value={formData.severity}
                       onChange={(e) => setFormData({ ...formData, severity: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-white"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                     >
                       <option value="Mild">Ringan (Mild)</option>
                       <option value="Moderate">Sedang (Moderate)</option>
@@ -149,7 +149,7 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
                       placeholder="Catatan reaksi"
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                     />
                   </div>
                 )}
@@ -160,7 +160,7 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
                       placeholder="Nama Obat"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                       required
                     />
                     <input
@@ -168,21 +168,21 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
                       placeholder="Dosis (cth: 5mg)"
                       value={formData.dosage}
                       onChange={(e) => setFormData({ ...formData, dosage: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                     />
                     <input
                       type="text"
                       placeholder="Frekuensi (cth: 1x1)"
                       value={formData.frequency}
                       onChange={(e) => setFormData({ ...formData, frequency: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                     />
                     <input
                       type="text"
                       placeholder="Keterangan"
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="col-span-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                     />
                   </div>
                 )}
@@ -193,7 +193,7 @@ export default function MedicalCard({ category, icon, isOpen, onToggle, onAddEnt
                       placeholder="Ketik catatan medis/instruksi dokter..."
                       value={formData.note}
                       onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-                      className="flex-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary"
+                      className="flex-1 rounded-xl border border-accent/25 px-3 py-1.5 text-xs text-text outline-none focus:border-primary bg-card"
                       required
                     />
                   </div>

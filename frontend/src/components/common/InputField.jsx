@@ -23,9 +23,9 @@ const BASE_INPUT = `
   w-full rounded-xl px-4 py-2.5 text-sm border transition-all duration-200 focus:outline-none
 `;
 
-const EDITABLE   = "bg-white border-accent/40 text-text placeholder-text/40 focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm";
+const EDITABLE   = "bg-card border-accent/40 text-text placeholder-text/40 focus:ring-2 focus:ring-primary/40 focus:border-primary shadow-sm";
 const READ_ONLY  = "bg-background border-accent/20 text-text/60 cursor-default";
-const DARK_EDIT  = "bg-white border-accent/40 text-text placeholder-text/40 focus:border-primary focus:ring-2 focus:ring-primary/40 shadow-sm";
+const DARK_EDIT  = "bg-card border-accent/40 text-text placeholder-text/40 focus:border-primary focus:ring-2 focus:ring-primary/40 shadow-sm";
 const ERROR_RING = "border-danger focus:ring-danger/30";
 
 export default function InputField({

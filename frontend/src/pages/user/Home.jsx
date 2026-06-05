@@ -140,7 +140,7 @@ export default function Home() {
       {/* ── Confirmation Modal ── */}
       {showConfirm && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-white border border-accent/20 rounded-3xl p-6 max-w-sm w-full shadow-2xl flex flex-col items-center text-center">
+          <div className="bg-card border border-accent/20 rounded-3xl p-6 max-w-sm w-full shadow-2xl flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full bg-danger/10 flex items-center justify-center mb-4 text-danger">
               <AlertTriangle className="w-6 h-6 animate-bounce" />
             </div>
@@ -151,7 +151,7 @@ export default function Home() {
             <div className="flex gap-3 w-full">
               <button
                 onClick={() => setShowConfirm(false)}
-                className="flex-1 py-3 px-4 rounded-xl border border-accent/30 bg-white hover:bg-accent/5 text-text text-sm font-bold transition-all cursor-pointer shadow-sm"
+                className="flex-1 py-3 px-4 rounded-xl border border-accent/30 bg-card hover:bg-accent/5 text-text text-sm font-bold transition-all cursor-pointer shadow-sm"
               >
                 Batal
               </button>

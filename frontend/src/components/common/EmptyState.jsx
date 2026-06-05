@@ -14,7 +14,7 @@ export default function EmptyState({ icon, title, message, action }) {
   return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       {icon && (
-        <div className="w-16 h-16 rounded-2xl bg-white border border-accent/20 flex items-center justify-center shadow-sm text-accent">
+        <div className="w-16 h-16 rounded-2xl bg-card border border-accent/20 flex items-center justify-center shadow-sm text-accent">
           {icon}
         </div>
       )}

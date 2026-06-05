@@ -55,7 +55,7 @@ export default function UserSidebar({ isCollapsed, setIsCollapsed }) {
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto">
+      <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto flex flex-col justify-center">
         {USER_NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}

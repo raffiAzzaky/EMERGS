@@ -133,7 +133,7 @@ export default function Notifications() {
           message="Semua notifikasi sudah dibaca atau dihapus."
         />
       ) : (
-        <div className="bg-white border border-accent/20 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-card border border-accent/20 rounded-2xl overflow-hidden shadow-sm">
           {notifs.map((notif, i) => (
             <NotificationItem
               key={notif.id}

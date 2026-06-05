@@ -33,7 +33,7 @@ const VARIANTS = {
     text:    "text-text",
   },
   neutral: {
-    wrapper: "bg-white border-accent/20 shadow-sm",
+    wrapper: "bg-card border-accent/20 shadow-sm",
     icon:    "bg-accent/15",
     text:    "text-text/70",
   },

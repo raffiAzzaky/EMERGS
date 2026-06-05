@@ -32,7 +32,7 @@ export default function TableToolbar({
   return (
     <div className="space-y-2">
       {/* ── Main toolbar row ── */}
-      <div className="bg-white border border-accent/20 rounded-2xl px-4 py-3 flex flex-col lg:flex-row gap-3 items-start lg:items-center justify-between shadow-sm">
+      <div className="bg-card border border-accent/20 rounded-2xl px-4 py-3 flex flex-col lg:flex-row gap-3 items-start lg:items-center justify-between shadow-sm">
 
         {/* Search input */}
         <div className="relative flex-1 w-full lg:max-w-sm">
@@ -42,7 +42,7 @@ export default function TableToolbar({
             value={search}
             onChange={(e) => onSearch?.(e.target.value)}
             placeholder={placeholder}
-            className="w-full bg-white border border-accent/30 rounded-xl pl-9 pr-4 py-2.5 text-sm text-text placeholder-text/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all shadow-sm"
+            className="w-full bg-card border border-accent/30 rounded-xl pl-9 pr-4 py-2.5 text-sm text-text placeholder-text/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all shadow-sm"
           />
         </div>
 

@@ -30,7 +30,7 @@ export default function ContactCard({ contact, onEdit, onDelete }) {
   const variant = PRIORITY_VARIANT[prioritas] ?? "neutral";
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm border border-accent/10 relative group hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+    <div className="bg-card rounded-2xl p-5 shadow-sm border border-accent/10 relative group hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
 
       {/* ── Action buttons (visible on hover) ── */}
       <div className="absolute top-4 right-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">

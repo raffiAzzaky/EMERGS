@@ -22,7 +22,7 @@ export default function InfoStrip({ items = DEFAULT_ITEMS }) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="bg-white border border-accent/20 rounded-2xl px-5 py-4 flex items-center justify-between shadow-sm transition-all duration-200 hover:shadow-md"
+          className="bg-card border border-accent/20 rounded-2xl px-5 py-4 flex items-center justify-between shadow-sm transition-all duration-200 hover:shadow-md"
         >
           <div>
             <p className="text-text/60 text-xs font-bold uppercase tracking-wider mb-1">
