@@ -1,16 +1,17 @@
 import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard, Users, Zap, Stethoscope,
-  BellRing, Settings, MapPin, X, ChevronRight,
+  BellRing, Settings, X, ChevronRight,
 } from "lucide-react";
+import logoEmergs from "../../assets/logo_emergs.png";
 
 const NAV_ITEMS = [
-  { to: "/admin",                    label: "Dashboard",          icon: LayoutDashboard, end: true },
-  { to: "/admin/users",              label: "Pengguna",           icon: Users },
-  { to: "/admin/panic-monitoring",   label: "Panic Monitoring",   icon: Zap },
+  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
+  { to: "/admin/users", label: "Pengguna", icon: Users },
+  { to: "/admin/panic-monitoring", label: "Panic Monitoring", icon: Zap },
   { to: "/admin/medical-monitoring", label: "Medical Monitoring", icon: Stethoscope },
-  { to: "/admin/notification-logs",  label: "Log Notifikasi",     icon: BellRing },
-  { to: "/admin/settings",           label: "Pengaturan",         icon: Settings },
+  { to: "/admin/notification-logs", label: "Log Notifikasi", icon: BellRing },
+  { to: "/admin/settings", label: "Pengaturan", icon: Settings },
 ];
 
 export default function Sidebar({ isOpen, onClose, user }) {
@@ -25,12 +26,11 @@ export default function Sidebar({ isOpen, onClose, user }) {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 py-6 border-b border-accent/20">
-        <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center shadow-sm">
-          <MapPin className="w-5 h-5 text-text" />
+        <div className="w-10 h-10 p-1.5 bg-white rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm border border-accent/10">
+          <img src={logoEmergs} alt="EMERGS Logo" className="w-full h-full object-contain" />
         </div>
         <div>
-          <p className="text-text font-bold text-base leading-none tracking-tight">MedAlert</p>
-          <p className="text-text/60 text-xs mt-0.5 font-medium uppercase tracking-wider">Admin Panel</p>
+          <p className="text-text font-bold text-base leading-none tracking-tight">EMERGS ADMIN</p>
         </div>
         <button
           className="ml-auto lg:hidden text-text/60 hover:text-text transition-colors"
@@ -42,7 +42,7 @@ export default function Sidebar({ isOpen, onClose, user }) {
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto flex flex-col justify-center">
+      <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto flex flex-col">
         {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}
@@ -50,10 +50,9 @@ export default function Sidebar({ isOpen, onClose, user }) {
             end={end}
             onClick={onClose}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 group relative ${
-                isActive
-                  ? "bg-primary text-text shadow-sm font-semibold"
-                  : "text-text/70 hover:bg-accent/20 hover:text-text"
+              `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 group relative ${isActive
+                ? "bg-primary text-text shadow-sm font-semibold"
+                : "text-text/70 hover:bg-accent/20 hover:text-text"
               }`
             }
           >

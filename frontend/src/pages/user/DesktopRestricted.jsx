@@ -1,6 +1,7 @@
-import { MapPin, PhoneCall, LogOut, ArrowLeft } from "lucide-react";
+import { PhoneCall, LogOut, ArrowLeft } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import logoEmergs from "../../assets/logo_emergs.png";
 
 export default function DesktopRestricted() {
   const { logout } = useAuth();
@@ -29,8 +30,8 @@ export default function DesktopRestricted() {
         <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-primary/5 blur-xl pointer-events-none" />
         
         {/* Animated Brand Logo Icon */}
-        <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center mb-8 shadow-lg border border-primary/20 animate-pulse">
-          <MapPin className="w-10 h-10 text-text" />
+        <div className="w-20 h-20 p-2.5 bg-white rounded-3xl border border-accent/20 shadow-sm flex items-center justify-center mb-8 animate-pulse">
+          <img src={logoEmergs} alt="EMERGS Logo" className="w-full h-full object-contain" />
         </div>
 
         {/* Title */}

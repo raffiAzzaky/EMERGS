@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, Phone, Heart, ArrowRight, ArrowLeft, Save, MapPin } from "lucide-react";
+import { User, Phone, Heart, ArrowRight, ArrowLeft, Save } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
+import logoEmergs from "../../assets/logo_emergs.png";
 import InputField from "../../components/common/InputField";
 import Button from "../../components/common/Button";
 
@@ -107,8 +108,8 @@ export default function Onboarding() {
       <div className="w-full max-w-xl bg-card border border-accent/20 rounded-3xl p-6 lg:p-8 shadow-2xl relative">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-3 shadow-md border border-primary/20">
-            <MapPin className="w-6 h-6 text-text" />
+          <div className="w-16 h-16 p-2 bg-white rounded-2xl border border-accent/20 shadow-sm flex items-center justify-center mx-auto mb-3">
+            <img src={logoEmergs} alt="EMERGS Logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-xl lg:text-2xl font-black text-text">Lengkapi Profil EMERGs</h1>
           <p className="text-xs text-text/60 mt-1">Lengkapi informasi berikut sebelum menggunakan dashboard utama.</p>

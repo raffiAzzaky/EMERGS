@@ -189,7 +189,7 @@ export default function AdminSettings() {
         </div>
 
         <p className="text-center text-text/50 text-xs pt-2">
-          MedAlert Admin Panel v2.1.0 &bull; &copy; 2024 Emergency System
+          EMERGS Admin Panel v2.1.0 &bull; &copy; 2024 Emergency System
         </p>
       </div>
     </div>

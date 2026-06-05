@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { MapPin } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
+import logoEmergs from "../../assets/logo_emergs.png";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -33,11 +33,11 @@ export default function Register() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center mb-3 shadow-md border border-primary/20">
-            <MapPin className="w-7 h-7 text-text" />
+          <div className="w-24 h-24 p-3.5 bg-white rounded-2xl border border-accent/20 shadow-md flex items-center justify-center mb-3">
+            <img src={logoEmergs} alt="EMERGS Logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-text text-2xl font-bold tracking-tight">EMERGS</h1>
-          <p className="text-text/60 text-sm mt-1 font-medium">Emergency Health System</p>
+          <p className="text-text/60 text-sm mt-1 font-medium">Platform Kesehatan Darurat</p>
         </div>
 
         {/* Card */}
